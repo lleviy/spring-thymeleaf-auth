@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title th:text="#{app.name}" layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE" ></title>
+</head>
+<section th:replace="~{fragments/head}"></section>
+<body>
+<section th:replace="~{fragments/header :: header}"></section>
+<main class="content" aria-label="Content">
+    <section layout:fragment="content"></section>
+</main>
+<section th:replace="~{fragments/scripts}"></section>
+</body>
+</html>

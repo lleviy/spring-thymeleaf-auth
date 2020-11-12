@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Sign Up</title>
+</head>
+<section layout:fragment="content">
+    <h1>Sign up an account</h1>
+    <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+    <form action="/" th:action="@{/signup}" th:object="${user}" method="POST" enctype="utf8">
+        <div class="form-group">
+            <label>First name</label>
+            <input type="text" class="form-control" th:field="*{firstName}"/>
+            <p th:each="error: ${#fields.errors('firstName')}"
+               th:text="${error}">Validation error</p>
+        </div>
+        <div class="form-group">
+            <label>Last name</label>
+            <input type="text" class="form-control" th:field="*{lastName}"/>
+            <p th:each="error: ${#fields.errors('lastName')}"
+               th:text="${error}">Validation error</p>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" placeholder="name@example.com" th:field="*{email}"/>
+            <p th:each="error : ${#fields.errors('email')}"
+               th:text="${error}">Validation error</p>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" th:field="*{password}"/>
+            <p th:each="error : ${#fields.errors('password')}"
+               th:text="${error}">Validation error</p>
+        </div>
+        <div class="form-group">
+            <label>Confirm password</label>
+            <input type="password" class="form-control" th:field="*{matchingPassword}"/>
+        </div>
+        <button type="submit" class="btn btn-primary" value="Sign Up">Sign up</button>
+    </form>
+    Already have an account? <a th:href="@{/login.html}">Sign in.</a>
+</section>
+</html>
+
