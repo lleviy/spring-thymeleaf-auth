@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @PasswordMatches
-public class UserDTO {
+public class UserDto {
     @NotNull
     @NotBlank
     @Size(max=20)

@@ -47,18 +47,32 @@
             <div sec:authorize="isAuthenticated()">
                 <ul class="navbar-nav align-items-center d-none d-md-flex">
                     <li class="nav-item dropdown">
-                        <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        <div class="btn-group">
+                        <a class="nav-link pr-0" th:href="@{/profile/edit}" role="button" aria-haspopup="true"
                            aria-expanded="false">
                             <div class="media align-items-center">
                                 <span class="avatar avatar-sm rounded-circle">
                                   <img alt="Image placeholder"
-                                       src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg">
+                                       th:src="${#authentication.getPrincipal().getPhotoPath()}">
                                 </span>
                                 <div class="media-body ml-2 d-none d-lg-block">
-                                    <span class="mb-0 text-sm  font-weight-bold" sec:authentication="principal.username">Username</span>
+                                    <span class="mb-0 text-sm  font-weight-bold" th:text="${#authentication.getPrincipal().getFirstName()}">FirstName</span>
                                 </div>
                             </div>
                         </a>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="/profile/edit">Edit profile</a>
+                            <div class="dropdown-divider"></div>
+                            <form th:action="@{/logout}" method="post">
+                                <input class="dropdown-item" type="submit" value="Sign Out"/>
+                            </form>
+                        </div>
+                        </div>
                     </li>
                 </ul>
             </div>

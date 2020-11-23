@@ -24,16 +24,23 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
+    private String photo;
+
+    private boolean enabled;
+
     public User() {
+        this.enabled = false;
     }
 
-    public User(Long id, String firstName, String lastName, String email, String password, Set<Role> roles) {
+    public User(Long id, String firstName, String lastName, String email, String password, Set<Role> roles, String photo) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.roles = roles;
+        this.photo = photo;
+        this.enabled = false;
     }
 
     public Long getId() {
@@ -82,5 +89,28 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    @Transient
+    public String getPhotoPath() {
+        if (photo == null || id == null) return null;
+
+        return "/user-photos/" + id + "/" + photo;
     }
 }
