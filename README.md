@@ -2,7 +2,7 @@
 
 This app provides custom authorization with Spring Security. 
 
-It allows:
+It allows to:
 - Confirm email after sign up
 - Update profile
 - Upload profile picture
